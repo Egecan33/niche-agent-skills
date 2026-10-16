@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-10-16",
+  "reuse_policy": "Original workflows; no upstream implementation or workflow prose copied. Only license notices are reproduced.",
+  "sources": [
+    {
+      "id": "agentevals",
+      "repo": "langchain-ai/agentevals",
+      "skill": "agent-trajectory-regression",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "paths": [
+        "README.md",
+        "python/agentevals/trajectory/match.py",
+        "python/LICENSE"
+      ],
+      "capability": "Rule-based trajectory matching and tool-argument matching; optional LLM judges are a separate mode.",
+      "workflow": "Versioned order/argument regression contracts, semantic-argument safeguards, and negative controls.",
+      "commit": "946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e",
+      "commit_url": "https://github.com/langchain-ai/agentevals/commit/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e",
+      "license_url": "https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/LICENSE",
+      "license_snapshot": "docs/upstream-licenses/agentevals.txt",
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "f1b8e2830fd0f6148a07633732774679d845f1fa",
+          "url": "https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/LICENSE",
+          "license_scope": "root LICENSE",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "594d7e851a5596dfd7fc9568f5106adb04c714be",
+          "url": "https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/README.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "python/agentevals/trajectory/match.py",
+          "blob_sha": "a47eaeac8cf3071137b8a1907d9b7484d2cd0939",
+          "url": "https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/match.py",
+          "license_scope": "python/LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "python/LICENSE",
+          "blob_sha": "f1b8e2830fd0f6148a07633732774679d845f1fa",
+          "url": "https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/LICENSE",
+          "license_scope": "python/LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    },
+    {
+      "id": "pgtap",
+      "repo": "theory/pgtap",
+      "skill": "postgres-tenant-isolation",
+      "license": "PostgreSQL",
+      "licensePath": "README.md",
+      "paths": [
+        "README.md",
+        "META.json",
+        "doc/pgtap.md",
+        "sql/pgtap.sql.in"
+      ],
+      "capability": "PostgreSQL TAP-emitting assertions, including query-result and error assertions.",
+      "workflow": "Tenant/role/operation RLS matrices with positive controls, adversarial writes, and bypass-role checks.",
+      "commit": "21ceed193bf370892d530c5115680839ee322851",
+      "commit_url": "https://github.com/theory/pgtap/commit/21ceed193bf370892d530c5115680839ee322851",
+      "license_url": "https://github.com/theory/pgtap/blob/21ceed193bf370892d530c5115680839ee322851/README.md",
+      "license_snapshot": "docs/upstream-licenses/pgtap.txt",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "blob_sha": "56619ed232432a6edc762a5d00696dcc9a230a8a",
+          "url": "https://github.com/theory/pgtap/blob/21ceed193bf370892d530c5115680839ee322851/README.md",
+          "license_scope": "README Copyright and License section; corroborated by META.json",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "META.json",
+          "blob_sha": "476ff7c5250ea6f9c2dc8a01e60feb2ac3703cf4",
+          "url": "https://github.com/theory/pgtap/blob/21ceed193bf370892d530c5115680839ee322851/META.json",
+          "license_scope": "README Copyright and License section; corroborated by META.json",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "doc/pgtap.md",
+          "blob_sha": "61062263673879690768a8b98f3dcfd3ecc3dcce",
+          "url": "https://github.com/theory/pgtap/blob/21ceed193bf370892d530c5115680839ee322851/doc/pgtap.md",
+          "license_scope": "In-file Copyright and License section; corroborated by META.json",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "sql/pgtap.sql.in",
+          "blob_sha": "c96bdb389c40d74b01cac8ca34cb130d045c5cfe",
+          "url": "https://github.com/theory/pgtap/blob/21ceed193bf370892d530c5115680839ee322851/sql/pgtap.sql.in",
+          "license_scope": "README Copyright and License section; corroborated by META.json",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    },
+    {
+      "id": "schemathesis",
+      "repo": "schemathesis/schemathesis",
+      "skill": "openapi-contract-probes",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "paths": [
+        "README.md",
+        "docs/quick-start.md"
+      ],
+      "capability": "Schema-driven API test generation, response validation, failure reports and reproductions.",
+      "workflow": "Bounded disposable-target probes, failure triage and minimized regression artifacts.",
+      "commit": "0a5ea2fef5189617214c04a2a474659d6399f963",
+      "commit_url": "https://github.com/schemathesis/schemathesis/commit/0a5ea2fef5189617214c04a2a474659d6399f963",
+      "license_url": "https://github.com/schemathesis/schemathesis/blob/0a5ea2fef5189617214c04a2a474659d6399f963/LICENSE",
+      "license_snapshot": "docs/upstream-licenses/schemathesis.txt",
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "11d5fded1e5cadaa9c11c8ee965310c0c0caef04",
+          "url": "https://github.com/schemathesis/schemathesis/blob/0a5ea2fef5189617214c04a2a474659d6399f963/LICENSE",
+          "license_scope": "root LICENSE",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "56ff37b3e742d71f27c6a78759068ff0be25bfd6",
+          "url": "https://github.com/schemathesis/schemathesis/blob/0a5ea2fef5189617214c04a2a474659d6399f963/README.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "docs/quick-start.md",
+          "blob_sha": "5c8f53aa567e74e941f4ee8cd56e5e2cdc186e8e",
+          "url": "https://github.com/schemathesis/schemathesis/blob/0a5ea2fef5189617214c04a2a474659d6399f963/docs/quick-start.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    },
+    {
+      "id": "openinference",
+      "repo": "Arize-ai/openinference",
+      "skill": "trace-failure-diagnosis",
+      "license": "Apache-2.0",
+      "licensePath": "LICENSE",
+      "paths": [
+        "README.md",
+        "spec/semantic_conventions.md",
+        "js/packages/openinference-core/docs/trace-config-and-masking.md"
+      ],
+      "capability": "OpenTelemetry-compatible semantic conventions and instrumentation/masking support.",
+      "workflow": "Evidence-based latency/error investigation, overlap-aware timing and instrumentation-gap reporting.",
+      "commit": "2925fc3eb2aea3fe4cd32395279243b129b23082",
+      "commit_url": "https://github.com/Arize-ai/openinference/commit/2925fc3eb2aea3fe4cd32395279243b129b23082",
+      "license_url": "https://github.com/Arize-ai/openinference/blob/2925fc3eb2aea3fe4cd32395279243b129b23082/LICENSE",
+      "license_snapshot": "docs/upstream-licenses/openinference.txt",
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "url": "https://github.com/Arize-ai/openinference/blob/2925fc3eb2aea3fe4cd32395279243b129b23082/LICENSE",
+          "license_scope": "root LICENSE",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "1d6531f8aba0c48e11d6177138e4873e27b2eaaf",
+          "url": "https://github.com/Arize-ai/openinference/blob/2925fc3eb2aea3fe4cd32395279243b129b23082/README.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "spec/semantic_conventions.md",
+          "blob_sha": "c00c5678976fdb5f181ed03352761dc47697dac4",
+          "url": "https://github.com/Arize-ai/openinference/blob/2925fc3eb2aea3fe4cd32395279243b129b23082/spec/semantic_conventions.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "js/packages/openinference-core/docs/trace-config-and-masking.md",
+          "blob_sha": "887e270d1b48d3ab5d18c4541cb08ee350aaebd2",
+          "url": "https://github.com/Arize-ai/openinference/blob/2925fc3eb2aea3fe4cd32395279243b129b23082/js/packages/openinference-core/docs/trace-config-and-masking.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    },
+    {
+      "id": "rrweb",
+      "repo": "rrweb-io/rrweb",
+      "skill": "masked-session-to-sop",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "paths": [
+        "README.md",
+        "guide.md",
+        "docs/recipes/record-and-replay.md"
+      ],
+      "capability": "DOM snapshots, interaction recording/replay and configurable masking/blocking.",
+      "workflow": "Consent-gated interpretation of a sanitized session into a cited SOP and automation requirements.",
+      "commit": "9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80",
+      "commit_url": "https://github.com/rrweb-io/rrweb/commit/9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80",
+      "license_url": "https://github.com/rrweb-io/rrweb/blob/9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80/LICENSE",
+      "license_snapshot": "docs/upstream-licenses/rrweb.txt",
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "f6bd47f33af40341ba88463487d6a24ea9ffbb9b",
+          "url": "https://github.com/rrweb-io/rrweb/blob/9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80/LICENSE",
+          "license_scope": "root LICENSE",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "57865dcc25fb0b6805ef320938886591067bce54",
+          "url": "https://github.com/rrweb-io/rrweb/blob/9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80/README.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "guide.md",
+          "blob_sha": "1b506a22f9f98f6143d11870bcea059783838773",
+          "url": "https://github.com/rrweb-io/rrweb/blob/9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80/guide.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "docs/recipes/record-and-replay.md",
+          "blob_sha": "f1d64c2d52953767dda1b1f88881cd270d950a19",
+          "url": "https://github.com/rrweb-io/rrweb/blob/9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80/docs/recipes/record-and-replay.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    },
+    {
+      "id": "curator",
+      "repo": "bespokelabsai/curator",
+      "skill": "grounded-synthetic-datasets",
+      "license": "Apache-2.0",
+      "licensePath": "LICENSE",
+      "paths": [
+        "README.md",
+        "src/bespokelabs/curator/llm/llm.py"
+      ],
+      "capability": "Bulk inference/data-curation pipelines with prompt/parse interfaces and structured output support.",
+      "workflow": "Source-grounded test generation with provenance, abstention cases, semantic review and split isolation.",
+      "commit": "98bb706d226107265175170906400e20775ef28c",
+      "commit_url": "https://github.com/bespokelabsai/curator/commit/98bb706d226107265175170906400e20775ef28c",
+      "license_url": "https://github.com/bespokelabsai/curator/blob/98bb706d226107265175170906400e20775ef28c/LICENSE",
+      "license_snapshot": "docs/upstream-licenses/curator.txt",
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "url": "https://github.com/bespokelabsai/curator/blob/98bb706d226107265175170906400e20775ef28c/LICENSE",
+          "license_scope": "root LICENSE",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "cc97beae2150af00f9e74efef2b33ae5ed5d4fbc",
+          "url": "https://github.com/bespokelabsai/curator/blob/98bb706d226107265175170906400e20775ef28c/README.md",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        },
+        {
+          "path": "src/bespokelabs/curator/llm/llm.py",
+          "blob_sha": "26fe117b3e58907532c969405ae9b2fc984ffee5",
+          "url": "https://github.com/bespokelabsai/curator/blob/98bb706d226107265175170906400e20775ef28c/src/bespokelabs/curator/llm/llm.py",
+          "license_scope": "root LICENSE",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    },
+    {
+      "id": "pdfplumber",
+      "repo": "jsvine/pdfplumber",
+      "skill": "pdf-table-evidence",
+      "license": "MIT",
+      "licensePath": "LICENSE.txt",
+      "paths": [
+        "README.md"
+      ],
+      "capability": "Character/line/rectangle inspection, table objects and visual debugging; no OCR engine.",
+      "workflow": "Page-and-coordinate evidence ledger for extracted cells with visual checks and reconciliation.",
+      "commit": "4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+      "commit_url": "https://github.com/jsvine/pdfplumber/commit/4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+      "license_url": "https://github.com/jsvine/pdfplumber/blob/4c64b92d5caccd71c645e98e0fabb0c4dba7ff45/LICENSE.txt",
+      "license_snapshot": "docs/upstream-licenses/pdfplumber.txt",
+      "reviewed_files": [
+        {
+          "path": "LICENSE.txt",
+          "blob_sha": "3300ee1ec31dbb2beb6b516bbde4ce8db63d4169",
+          "url": "https://github.com/jsvine/pdfplumber/blob/4c64b92d5caccd71c645e98e0fabb0c4dba7ff45/LICENSE.txt",
+          "license_scope": "root LICENSE.txt",
+          "copy_status": "license notice only reproduced",
+          "header_override_seen": false
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "f6f1ce3e0e546b854787aff946601af44fcc6f69",
+          "url": "https://github.com/jsvine/pdfplumber/blob/4c64b92d5caccd71c645e98e0fabb0c4dba7ff45/README.md",
+          "license_scope": "root LICENSE.txt",
+          "copy_status": "consulted, not copied",
+          "header_override_seen": false
+        }
+      ]
+    }
+  ]
+}

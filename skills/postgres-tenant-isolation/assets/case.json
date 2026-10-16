@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "rls",
+  "cases": [
+    {
+      "id": "own-visible",
+      "input": {
+        "effective_role": "authenticated",
+        "positive_control": true,
+        "operation": "select",
+        "expected_rows": [
+          "note-a"
+        ],
+        "actual_rows": [
+          "note-a"
+        ]
+      },
+      "issues": []
+    },
+    {
+      "id": "cross-tenant-leak",
+      "input": {
+        "effective_role": "authenticated",
+        "positive_control": true,
+        "operation": "select",
+        "expected_rows": [
+          "note-a"
+        ],
+        "actual_rows": [
+          "note-a",
+          "note-b"
+        ]
+      },
+      "issues": [
+        "row-set-mismatch"
+      ]
+    },
+    {
+      "id": "vacuous-deny",
+      "input": {
+        "effective_role": "authenticated",
+        "positive_control": false,
+        "operation": "select",
+        "expected_rows": [],
+        "actual_rows": []
+      },
+      "issues": [
+        "missing-positive-control"
+      ]
+    },
+    {
+      "id": "bypass-connection",
+      "input": {
+        "effective_role": "service_role",
+        "positive_control": true,
+        "operation": "select",
+        "expected_rows": [
+          "note-a"
+        ],
+        "actual_rows": [
+          "note-a"
+        ]
+      },
+      "issues": [
+        "bypass-role"
+      ]
+    },
+    {
+      "id": "ownership-transfer",
+      "input": {
+        "effective_role": "authenticated",
+        "positive_control": true,
+        "operation": "update",
+        "expected_rows": [
+          "note-a:tenant-a"
+        ],
+        "actual_rows": [
+          "note-a:tenant-b"
+        ]
+      },
+      "issues": [
+        "row-set-mismatch"
+      ]
+    }
+  ]
+}

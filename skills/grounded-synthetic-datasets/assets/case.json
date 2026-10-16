@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "dataset",
+  "sources": [
+    {
+      "id": "policy-01",
+      "revision": "v1",
+      "group": "returns-policy",
+      "split": "eval",
+      "text": "Unopened items can be returned within 14 days.",
+      "oracles": {
+        "How many days?": "14 days",
+        "What is the return shipping fee?": null
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "grounded",
+      "input": {
+        "rows": [
+          {
+            "id": "q1",
+            "source_id": "policy-01",
+            "source_revision": "v1",
+            "source_group": "returns-policy",
+            "evidence": "section-1",
+            "question": "How many days?",
+            "answer": "14 days",
+            "answerable": true,
+            "split": "eval",
+            "generation": "hand-authored synthetic pilot"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "id": "unsupported-answer",
+      "input": {
+        "rows": [
+          {
+            "id": "q1",
+            "source_id": "policy-01",
+            "source_revision": "v1",
+            "source_group": "returns-policy",
+            "evidence": "section-1",
+            "question": "How many days?",
+            "answer": "30 days",
+            "answerable": true,
+            "split": "eval",
+            "generation": "hand-authored synthetic pilot"
+          }
+        ]
+      },
+      "issues": [
+        "unsupported-answer"
+      ]
+    },
+    {
+      "id": "leaked-split",
+      "input": {
+        "rows": [
+          {
+            "id": "q1",
+            "source_id": "policy-01",
+            "source_revision": "v1",
+            "source_group": "returns-policy",
+            "evidence": "section-1",
+            "question": "How many days?",
+            "answer": "14 days",
+            "answerable": true,
+            "split": "train",
+            "generation": "hand-authored synthetic pilot"
+          }
+        ]
+      },
+      "issues": [
+        "source-split-leakage"
+      ]
+    },
+    {
+      "id": "duplicate-question",
+      "input": {
+        "rows": [
+          {
+            "id": "q1",
+            "source_id": "policy-01",
+            "source_revision": "v1",
+            "source_group": "returns-policy",
+            "evidence": "section-1",
+            "question": "How many days?",
+            "answer": "14 days",
+            "answerable": true,
+            "split": "eval",
+            "generation": "hand-authored synthetic pilot"
+          },
+          {
+            "id": "q2",
+            "source_id": "policy-01",
+            "source_revision": "v1",
+            "source_group": "returns-policy",
+            "evidence": "section-1",
+            "question": " How MANY days? ",
+            "answer": "14 days",
+            "answerable": true,
+            "split": "eval",
+            "generation": "hand-authored synthetic pilot"
+          }
+        ]
+      },
+      "issues": [
+        "duplicate-question"
+      ]
+    },
+    {
+      "id": "abstention",
+      "input": {
+        "rows": [
+          {
+            "id": "q3",
+            "source_id": "policy-01",
+            "source_revision": "v1",
+            "source_group": "returns-policy",
+            "evidence": "section-1",
+            "question": "What is the return shipping fee?",
+            "answer": null,
+            "answerable": false,
+            "split": "eval",
+            "generation": "hand-authored synthetic pilot"
+          }
+        ]
+      },
+      "issues": []
+    }
+  ]
+}

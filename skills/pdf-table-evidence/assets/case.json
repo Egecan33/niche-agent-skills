@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "pdf",
+  "page": {
+    "number": 1,
+    "width": 612,
+    "height": 792,
+    "rotation": 0
+  },
+  "table": {
+    "bbox": [
+      40,
+      100,
+      240,
+      160
+    ],
+    "cells": [
+      {
+        "id": "quantity",
+        "page": 1,
+        "bbox": [
+          140,
+          120,
+          240,
+          140
+        ],
+        "raw_text": "1,250",
+        "normalized_value": 1250
+      }
+    ]
+  },
+  "render_available": false,
+  "cases": [
+    {
+      "id": "linked-cell",
+      "input": {
+        "ledger": [
+          {
+            "cell_id": "quantity",
+            "page": 1,
+            "bbox": [
+              140,
+              120,
+              240,
+              140
+            ],
+            "coordinate_system": "x0-top-x1-bottom-pdf-points",
+            "raw_text": "1,250",
+            "normalized_value": 1250,
+            "visual_review": "not_run"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "id": "page-box-as-cell",
+      "input": {
+        "ledger": [
+          {
+            "cell_id": "quantity",
+            "page": 1,
+            "bbox": [
+              0,
+              0,
+              612,
+              792
+            ],
+            "coordinate_system": "x0-top-x1-bottom-pdf-points",
+            "raw_text": "1,250",
+            "normalized_value": 1250,
+            "visual_review": "not_run"
+          }
+        ]
+      },
+      "issues": [
+        "cell-coordinate-mismatch"
+      ]
+    },
+    {
+      "id": "out-of-page",
+      "input": {
+        "ledger": [
+          {
+            "cell_id": "quantity",
+            "page": 1,
+            "bbox": [
+              140,
+              120,
+              700,
+              140
+            ],
+            "coordinate_system": "x0-top-x1-bottom-pdf-points",
+            "raw_text": "1,250",
+            "normalized_value": 1250,
+            "visual_review": "not_run"
+          }
+        ]
+      },
+      "issues": [
+        "bbox-out-of-page",
+        "cell-coordinate-mismatch"
+      ]
+    },
+    {
+      "id": "wrong-normalization",
+      "input": {
+        "ledger": [
+          {
+            "cell_id": "quantity",
+            "page": 1,
+            "bbox": [
+              140,
+              120,
+              240,
+              140
+            ],
+            "coordinate_system": "x0-top-x1-bottom-pdf-points",
+            "raw_text": "1,250",
+            "normalized_value": 1.25,
+            "visual_review": "not_run"
+          }
+        ]
+      },
+      "issues": [
+        "normalization-mismatch"
+      ]
+    },
+    {
+      "id": "unverified-visual-claim",
+      "input": {
+        "ledger": [
+          {
+            "cell_id": "quantity",
+            "page": 1,
+            "bbox": [
+              140,
+              120,
+              240,
+              140
+            ],
+            "coordinate_system": "x0-top-x1-bottom-pdf-points",
+            "raw_text": "1,250",
+            "normalized_value": 1250,
+            "visual_review": "passed"
+          }
+        ]
+      },
+      "issues": [
+        "unverified-visual-claim"
+      ]
+    }
+  ]
+}

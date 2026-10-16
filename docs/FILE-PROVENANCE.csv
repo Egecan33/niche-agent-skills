@@ -1,0 +1,8 @@
+local_path,upstream_repository,upstream_commit,upstream_path,license_id,copy_kind,modification,reviewed_date
+docs/upstream-licenses/agentevals.txt,langchain-ai/agentevals,946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e,LICENSE,MIT,license-notice-only,terminal newline may be normalized,2026-10-16
+docs/upstream-licenses/pgtap.txt,theory/pgtap,21ceed193bf370892d530c5115680839ee322851,README.md,PostgreSQL,license-notice-only,license section extracted; terminal newline normalized,2026-10-16
+docs/upstream-licenses/schemathesis.txt,schemathesis/schemathesis,0a5ea2fef5189617214c04a2a474659d6399f963,LICENSE,MIT,license-notice-only,terminal newline may be normalized,2026-10-16
+docs/upstream-licenses/openinference.txt,Arize-ai/openinference,2925fc3eb2aea3fe4cd32395279243b129b23082,LICENSE,Apache-2.0,license-notice-only,terminal newline may be normalized,2026-10-16
+docs/upstream-licenses/rrweb.txt,rrweb-io/rrweb,9b9a1ff30dd281d00317b0fbece3dbd90a9e0a80,LICENSE,MIT,license-notice-only,terminal newline may be normalized,2026-10-16
+docs/upstream-licenses/curator.txt,bespokelabsai/curator,98bb706d226107265175170906400e20775ef28c,LICENSE,Apache-2.0,license-notice-only,terminal newline may be normalized,2026-10-16
+docs/upstream-licenses/pdfplumber.txt,jsvine/pdfplumber,4c64b92d5caccd71c645e98e0fabb0c4dba7ff45,LICENSE.txt,MIT,license-notice-only,terminal newline may be normalized,2026-10-16

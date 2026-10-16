@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "agent-trajectory-regression-routing-1",
+      "kind": "routing",
+      "skill": "agent-trajectory-regression",
+      "prompt": "The assistant still gives the right total, but it now prepares a change before looking up record 7. Compare the sanitized traces and protect amount=12.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "agent-trajectory-regression-routing-2",
+      "kind": "routing",
+      "skill": "agent-trajectory-regression",
+      "prompt": "Bu iki ajan izi aynı araçları çağırıyor; sıra, tekrar ve tenant argümanı kaymalarını yakalayan bir regresyon sözleşmesi hazırla.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "agent-trajectory-regression-routing-3",
+      "kind": "routing",
+      "skill": "agent-trajectory-regression",
+      "prompt": "Grade whether this final answer is polite and fluent. There are no tool-call logs or required tool paths.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "agent-trajectory-regression-routing-4",
+      "kind": "routing",
+      "skill": "agent-trajectory-regression",
+      "prompt": "Measure the p95 latency of these agent spans; tool arguments are intentionally omitted.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "agent-trajectory-regression-behavior",
+      "kind": "behavior",
+      "skill": "agent-trajectory-regression",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/agent-trajectory-regression/assets/case.json",
+      "assertions": [
+        "Selects an order-sensitive policy and exact significant arguments.",
+        "Flags swapped calls, changed amount and duplicate write intent without replaying tools.",
+        "Distinguishes simplified offline fixture comparison from an AgentEvals run."
+      ]
+    },
+    {
+      "id": "postgres-tenant-isolation-routing-1",
+      "kind": "routing",
+      "skill": "postgres-tenant-isolation",
+      "prompt": "Design pgTAP cases for members A and B sharing authenticated while seeing only their own tenant's notes; include forged inserts and reassignment.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "postgres-tenant-isolation-routing-2",
+      "kind": "routing",
+      "skill": "postgres-tenant-isolation",
+      "prompt": "Our deny tests all pass as admin. Audit this RLS matrix and add a visible own-row positive control before calling it isolated.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "postgres-tenant-isolation-routing-3",
+      "kind": "routing",
+      "skill": "postgres-tenant-isolation",
+      "prompt": "Optimize this Postgres aggregate query and choose an index; access control is outside this request.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "postgres-tenant-isolation-routing-4",
+      "kind": "routing",
+      "skill": "postgres-tenant-isolation",
+      "prompt": "Check that GET /notes returns the OpenAPI response schema; no database policy definitions are supplied.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "postgres-tenant-isolation-behavior",
+      "kind": "behavior",
+      "skill": "postgres-tenant-isolation",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/postgres-tenant-isolation/assets/case.json",
+      "assertions": [
+        "Requires a restricted effective role and an own-row positive control.",
+        "Covers cross-tenant reads and forged insert/update/delete effects.",
+        "Does not claim JSON report checks prove real RLS or HTTP auth."
+      ]
+    },
+    {
+      "id": "openapi-contract-probes-routing-1",
+      "kind": "routing",
+      "skill": "openapi-contract-probes",
+      "prompt": "Use this OpenAPI schema to design bounded Schemathesis probes on my disposable local inventory API and preserve minimal failure artifacts.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "openapi-contract-probes-routing-2",
+      "kind": "routing",
+      "skill": "openapi-contract-probes",
+      "prompt": "A captured 200 response returns quantity as a string while the spec says integer. Triage the contract discrepancy and propose edge cases.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "openapi-contract-probes-routing-3",
+      "kind": "routing",
+      "skill": "openapi-contract-probes",
+      "prompt": "Load test production at 10000 requests per second; there is no schema and no disposable environment.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "openapi-contract-probes-routing-4",
+      "kind": "routing",
+      "skill": "openapi-contract-probes",
+      "prompt": "Explain why tenant B sees tenant A rows by inspecting our SQL RLS policy, not the HTTP contract.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "openapi-contract-probes-behavior",
+      "kind": "behavior",
+      "skill": "openapi-contract-probes",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/openapi-contract-probes/assets/case.json",
+      "assertions": [
+        "Bounds targets, external references, operations and request budget before runtime.",
+        "Flags a string quantity against the declared integer contract without coercion.",
+        "Separates schema intent uncertainty and unexecuted Schemathesis integration."
+      ]
+    },
+    {
+      "id": "trace-failure-diagnosis-routing-1",
+      "kind": "routing",
+      "skill": "trace-failure-diagnosis",
+      "prompt": "These sanitized RAG spans overlap. Identify the wall time and evidenced failure without double-counting LLM and retriever time.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "trace-failure-diagnosis-routing-2",
+      "kind": "routing",
+      "skill": "trace-failure-diagnosis",
+      "prompt": "Compare the supplied OpenInference spans for retries and status propagation, and name gaps before blaming the vector index.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "trace-failure-diagnosis-routing-3",
+      "kind": "routing",
+      "skill": "trace-failure-diagnosis",
+      "prompt": "Score whether this answer is entailed by the retrieved document text; there are no spans.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "trace-failure-diagnosis-routing-4",
+      "kind": "routing",
+      "skill": "trace-failure-diagnosis",
+      "prompt": "Compare the exact order and amount arguments of these agent tool calls; timestamps are unavailable.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "trace-failure-diagnosis-behavior",
+      "kind": "behavior",
+      "skill": "trace-failure-diagnosis",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/trace-failure-diagnosis/assets/case.json",
+      "assertions": [
+        "Reports 100 ms root wall time and 80 ms child interval coverage.",
+        "Retains retriever/root ERROR evidence and does not invent a population p95.",
+        "Keeps backend cause conditional and preserves tracing gaps."
+      ]
+    },
+    {
+      "id": "masked-session-to-sop-routing-1",
+      "kind": "routing",
+      "skill": "masked-session-to-sop",
+      "prompt": "We have permission to document this masked rrweb sandbox export. Produce an event-cited SOP and automation requirements without executing them.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "masked-session-to-sop-routing-2",
+      "kind": "routing",
+      "skill": "masked-session-to-sop",
+      "prompt": "This consented session ends after clicking Save. Document the workflow and mark the missing confirmation as unknown.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "masked-session-to-sop-routing-3",
+      "kind": "routing",
+      "skill": "masked-session-to-sop",
+      "prompt": "Covertly record staff activity and recover the real values behind the input masking.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "masked-session-to-sop-routing-4",
+      "kind": "routing",
+      "skill": "masked-session-to-sop",
+      "prompt": "Write a Playwright test from my written UI spec; there is no session recording to interpret.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "masked-session-to-sop-behavior",
+      "kind": "behavior",
+      "skill": "masked-session-to-sop",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/masked-session-to-sop/assets/case.json",
+      "assertions": [
+        "Requires consent and sanitization; does not infer masked values.",
+        "Cites observed event IDs and reports unknown success without confirmation.",
+        "Separates observed SOP from proposed automation and does not run replay."
+      ]
+    },
+    {
+      "id": "grounded-synthetic-datasets-routing-1",
+      "kind": "routing",
+      "skill": "grounded-synthetic-datasets",
+      "prompt": "Design a Curator-style eval set from these permitted synthetic policies, with source IDs, abstentions and source-family split isolation.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "grounded-synthetic-datasets-routing-2",
+      "kind": "routing",
+      "skill": "grounded-synthetic-datasets",
+      "prompt": "Audit these generated QA rows: a 30-day answer cites a 14-day policy, and paraphrases from one source appear in train and eval.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "grounded-synthetic-datasets-routing-3",
+      "kind": "routing",
+      "skill": "grounded-synthetic-datasets",
+      "prompt": "Generate imaginative stories without source grounding, citations, labels or a test-set purpose.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "grounded-synthetic-datasets-routing-4",
+      "kind": "routing",
+      "skill": "grounded-synthetic-datasets",
+      "prompt": "Benchmark tool-call order from fixed message traces; no dataset generation or source corpus is needed.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "grounded-synthetic-datasets-behavior",
+      "kind": "behavior",
+      "skill": "grounded-synthetic-datasets",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/grounded-synthetic-datasets/assets/case.json",
+      "assertions": [
+        "Rejects a 30-day answer and enforces source-level split isolation.",
+        "Includes supported abstention and row-level source revision/evidence.",
+        "Distinguishes hand-authored pilot checks from Curator or paid generation."
+      ]
+    },
+    {
+      "id": "pdf-table-evidence-routing-1",
+      "kind": "routing",
+      "skill": "pdf-table-evidence",
+      "prompt": "Extract this permitted machine-generated PDF table and give every cell a 1-based page and x0/top/x1/bottom evidence box.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "pdf-table-evidence-routing-2",
+      "kind": "routing",
+      "skill": "pdf-table-evidence",
+      "prompt": "Audit the mock pdfplumber table export for shifted cells, numeric normalization, and coordinates outside the page.",
+      "should_trigger": true,
+      "reason": "Workflow matches the named skill's evidence and task boundaries."
+    },
+    {
+      "id": "pdf-table-evidence-routing-3",
+      "kind": "routing",
+      "skill": "pdf-table-evidence",
+      "prompt": "Perform OCR on these scanned photographs; there are no text objects or machine-readable PDF tables.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "pdf-table-evidence-routing-4",
+      "kind": "routing",
+      "skill": "pdf-table-evidence",
+      "prompt": "Summarize this plain-text report; no PDF coordinates or table evidence are needed.",
+      "should_trigger": false,
+      "reason": "Near miss lacks the specific evidence/task or requests an excluded activity."
+    },
+    {
+      "id": "pdf-table-evidence-behavior",
+      "kind": "behavior",
+      "skill": "pdf-table-evidence",
+      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
+      "fixture": "skills/pdf-table-evidence/assets/case.json",
+      "assertions": [
+        "Preserves raw text and cell-specific page/bbox evidence.",
+        "Flags out-of-page coordinates and wrong normalization; does not fake visual review.",
+        "Discloses no real PDF extraction/render and no OCR capability."
+      ]
+    }
+  ]
+}

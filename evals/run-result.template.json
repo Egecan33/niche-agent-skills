@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "not_run",
+  "host": null,
+  "host_version": null,
+  "model": null,
+  "skill_revision": null,
+  "case_id": null,
+  "condition": null,
+  "run_index": null,
+  "loaded_skill_path": null,
+  "output_artifact": null,
+  "assertion_results": [],
+  "hard_boundary_violations": [],
+  "duration_seconds": null,
+  "notes": "Template only; no host or model evaluation has been executed."
+}

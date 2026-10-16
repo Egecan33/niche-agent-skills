@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "trace",
+  "spans": [
+    {
+      "id": "root",
+      "parent": null,
+      "kind": "AGENT",
+      "start_ms": 0,
+      "end_ms": 100,
+      "status": "ERROR"
+    },
+    {
+      "id": "retrieve",
+      "parent": "root",
+      "kind": "RETRIEVER",
+      "start_ms": 10,
+      "end_ms": 70,
+      "status": "ERROR"
+    },
+    {
+      "id": "model",
+      "parent": "root",
+      "kind": "LLM",
+      "start_ms": 50,
+      "end_ms": 90,
+      "status": "UNSET"
+    }
+  ],
+  "cases": [
+    {
+      "id": "overlap-aware",
+      "input": {
+        "report": {
+          "wall_ms": 100,
+          "covered_ms": 80,
+          "uncovered_ms": 20,
+          "error_span_ids": [
+            "retrieve",
+            "root"
+          ]
+        }
+      },
+      "issues": []
+    },
+    {
+      "id": "summed-children",
+      "input": {
+        "report": {
+          "wall_ms": 100,
+          "covered_ms": 100,
+          "uncovered_ms": 0,
+          "error_span_ids": [
+            "retrieve",
+            "root"
+          ]
+        }
+      },
+      "issues": [
+        "coverage-mismatch",
+        "uncovered-mismatch"
+      ]
+    },
+    {
+      "id": "missing-error",
+      "input": {
+        "report": {
+          "wall_ms": 100,
+          "covered_ms": 80,
+          "uncovered_ms": 20,
+          "error_span_ids": [
+            "root"
+          ]
+        }
+      },
+      "issues": [
+        "error-evidence-mismatch"
+      ]
+    },
+    {
+      "id": "invented-p95",
+      "input": {
+        "report": {
+          "wall_ms": 100,
+          "covered_ms": 80,
+          "uncovered_ms": 20,
+          "error_span_ids": [
+            "retrieve",
+            "root"
+          ],
+          "p95_ms": 100
+        }
+      },
+      "issues": [
+        "unsupported-population-statistic"
+      ]
+    }
+  ]
+}

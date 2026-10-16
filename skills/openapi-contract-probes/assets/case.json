@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "openapi",
+  "contract": {
+    "status": 200,
+    "content_type": "application/json",
+    "required": "quantity",
+    "type": "integer",
+    "minimum": 0
+  },
+  "cases": [
+    {
+      "id": "integer",
+      "input": {
+        "status": 200,
+        "content_type": "application/json",
+        "body": {
+          "quantity": 3
+        }
+      },
+      "issues": []
+    },
+    {
+      "id": "string",
+      "input": {
+        "status": 200,
+        "content_type": "application/json",
+        "body": {
+          "quantity": "3"
+        }
+      },
+      "issues": [
+        "response-type"
+      ]
+    },
+    {
+      "id": "boolean",
+      "input": {
+        "status": 200,
+        "content_type": "application/json",
+        "body": {
+          "quantity": true
+        }
+      },
+      "issues": [
+        "response-type"
+      ]
+    },
+    {
+      "id": "negative",
+      "input": {
+        "status": 200,
+        "content_type": "application/json",
+        "body": {
+          "quantity": -1
+        }
+      },
+      "issues": [
+        "response-range"
+      ]
+    },
+    {
+      "id": "undocumented-status",
+      "input": {
+        "status": 500,
+        "content_type": "application/json",
+        "body": {
+          "quantity": 3
+        }
+      },
+      "issues": [
+        "response-status"
+      ]
+    }
+  ]
+}

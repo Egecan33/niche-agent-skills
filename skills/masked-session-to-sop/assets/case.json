@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "session",
+  "cases": [
+    {
+      "id": "confirmed",
+      "input": {
+        "consent": true,
+        "sanitized": true,
+        "events": [
+          {
+            "id": "e1",
+            "time_ms": 0,
+            "action": "open",
+            "target": "Drafts"
+          },
+          {
+            "id": "e2",
+            "time_ms": 1000,
+            "action": "input",
+            "value": "[masked]"
+          },
+          {
+            "id": "e3",
+            "time_ms": 2000,
+            "action": "click",
+            "target": "Save"
+          },
+          {
+            "id": "e4",
+            "time_ms": 3000,
+            "action": "confirmation",
+            "text": "Draft saved"
+          }
+        ],
+        "steps": [
+          {
+            "evidence": [
+              "e1"
+            ],
+            "action": "Open Drafts"
+          },
+          {
+            "evidence": [
+              "e2"
+            ],
+            "action": "Enter user-supplied text; recorded value unknown"
+          },
+          {
+            "evidence": [
+              "e3",
+              "e4"
+            ],
+            "action": "Save and observe confirmation"
+          }
+        ],
+        "outcome": "saved",
+        "recovered_masked_value": null
+      },
+      "issues": []
+    },
+    {
+      "id": "save-without-confirmation",
+      "input": {
+        "consent": true,
+        "sanitized": true,
+        "events": [
+          {
+            "id": "e1",
+            "time_ms": 0,
+            "action": "open",
+            "target": "Drafts"
+          },
+          {
+            "id": "e2",
+            "time_ms": 1000,
+            "action": "input",
+            "value": "[masked]"
+          },
+          {
+            "id": "e3",
+            "time_ms": 2000,
+            "action": "click",
+            "target": "Save"
+          }
+        ],
+        "steps": [
+          {
+            "evidence": [
+              "e1"
+            ],
+            "action": "Open Drafts"
+          },
+          {
+            "evidence": [
+              "e2"
+            ],
+            "action": "Enter user-supplied text; recorded value unknown"
+          }
+        ],
+        "outcome": "saved",
+        "recovered_masked_value": null
+      },
+      "issues": [
+        "unobserved-success"
+      ]
+    },
+    {
+      "id": "no-consent",
+      "input": {
+        "consent": false,
+        "sanitized": true,
+        "events": [
+          {
+            "id": "e1",
+            "time_ms": 0,
+            "action": "open",
+            "target": "Drafts"
+          },
+          {
+            "id": "e2",
+            "time_ms": 1000,
+            "action": "input",
+            "value": "[masked]"
+          },
+          {
+            "id": "e3",
+            "time_ms": 2000,
+            "action": "click",
+            "target": "Save"
+          },
+          {
+            "id": "e4",
+            "time_ms": 3000,
+            "action": "confirmation",
+            "text": "Draft saved"
+          }
+        ],
+        "steps": [
+          {
+            "evidence": [
+              "e1"
+            ],
+            "action": "Open Drafts"
+          },
+          {
+            "evidence": [
+              "e2"
+            ],
+            "action": "Enter user-supplied text; recorded value unknown"
+          },
+          {
+            "evidence": [
+              "e3",
+              "e4"
+            ],
+            "action": "Save and observe confirmation"
+          }
+        ],
+        "outcome": "saved",
+        "recovered_masked_value": null
+      },
+      "issues": [
+        "consent-required"
+      ]
+    },
+    {
+      "id": "invented-masked-value",
+      "input": {
+        "consent": true,
+        "sanitized": true,
+        "events": [
+          {
+            "id": "e1",
+            "time_ms": 0,
+            "action": "open",
+            "target": "Drafts"
+          },
+          {
+            "id": "e2",
+            "time_ms": 1000,
+            "action": "input",
+            "value": "[masked]"
+          },
+          {
+            "id": "e3",
+            "time_ms": 2000,
+            "action": "click",
+            "target": "Save"
+          },
+          {
+            "id": "e4",
+            "time_ms": 3000,
+            "action": "confirmation",
+            "text": "Draft saved"
+          }
+        ],
+        "steps": [
+          {
+            "evidence": [
+              "e1"
+            ],
+            "action": "Open Drafts"
+          },
+          {
+            "evidence": [
+              "e2"
+            ],
+            "action": "Enter user-supplied text; recorded value unknown"
+          },
+          {
+            "evidence": [
+              "e3",
+              "e4"
+            ],
+            "action": "Save and observe confirmation"
+          }
+        ],
+        "outcome": "saved",
+        "recovered_masked_value": "invented draft"
+      },
+      "issues": [
+        "unmasking-inference"
+      ]
+    },
+    {
+      "id": "invalid-evidence-id",
+      "input": {
+        "consent": true,
+        "sanitized": true,
+        "events": [
+          {
+            "id": "e1",
+            "time_ms": 0,
+            "action": "open",
+            "target": "Drafts"
+          },
+          {
+            "id": "e2",
+            "time_ms": 1000,
+            "action": "input",
+            "value": "[masked]"
+          },
+          {
+            "id": "e3",
+            "time_ms": 2000,
+            "action": "click",
+            "target": "Save"
+          },
+          {
+            "id": "e4",
+            "time_ms": 3000,
+            "action": "confirmation",
+            "text": "Draft saved"
+          }
+        ],
+        "steps": [
+          {
+            "evidence": [
+              "unknown"
+            ],
+            "action": "Open Drafts"
+          }
+        ],
+        "outcome": "saved",
+        "recovered_masked_value": null
+      },
+      "issues": [
+        "unknown-event-reference"
+      ]
+    }
+  ]
+}

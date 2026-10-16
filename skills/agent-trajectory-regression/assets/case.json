@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic teaching fixture; normalized format, not an upstream wire format.",
+  "kind": "trajectory",
+  "reference": {
+    "calls": [
+      {
+        "name": "lookup_record",
+        "arguments": {
+          "record_id": 7
+        }
+      },
+      {
+        "name": "prepare_change",
+        "arguments": {
+          "record_id": 7,
+          "amount": 12
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "same",
+      "input": {
+        "calls": [
+          {
+            "name": "lookup_record",
+            "arguments": {
+              "record_id": 7
+            }
+          },
+          {
+            "name": "prepare_change",
+            "arguments": {
+              "record_id": 7,
+              "amount": 12
+            }
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "id": "swapped",
+      "input": {
+        "calls": [
+          {
+            "name": "prepare_change",
+            "arguments": {
+              "record_id": 7,
+              "amount": 12
+            }
+          },
+          {
+            "name": "lookup_record",
+            "arguments": {
+              "record_id": 7
+            }
+          }
+        ]
+      },
+      "issues": [
+        "tool-order"
+      ]
+    },
+    {
+      "id": "changed-amount",
+      "input": {
+        "calls": [
+          {
+            "name": "lookup_record",
+            "arguments": {
+              "record_id": 7
+            }
+          },
+          {
+            "name": "prepare_change",
+            "arguments": {
+              "record_id": 7,
+              "amount": 120
+            }
+          }
+        ]
+      },
+      "issues": [
+        "significant-argument"
+      ]
+    },
+    {
+      "id": "duplicate-write",
+      "input": {
+        "calls": [
+          {
+            "name": "lookup_record",
+            "arguments": {
+              "record_id": 7
+            }
+          },
+          {
+            "name": "prepare_change",
+            "arguments": {
+              "record_id": 7,
+              "amount": 12
+            }
+          },
+          {
+            "name": "prepare_change",
+            "arguments": {
+              "record_id": 7,
+              "amount": 12
+            }
+          }
+        ]
+      },
+      "issues": [
+        "call-count"
+      ]
+    }
+  ]
+}
