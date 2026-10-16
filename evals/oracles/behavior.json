@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "visibility": "evaluator-only",
+  "cases": {
+    "agent-trajectory-regression-behavior": {
+      "skill": "agent-trajectory-regression",
+      "input": "evals/inputs/agent-trajectory-regression.json",
+      "input_sha256": "58a76ceb181f18cbeb052172af8034977f4f39de2e7a6f7e023dd3b4f6c779bb",
+      "assertions": [
+        "Selects an order-sensitive policy and exact significant arguments.",
+        "Flags swapped calls and changed units without replaying tools; the valid path passes.",
+        "Distinguishes simplified offline fixture comparison from an AgentEvals run."
+      ],
+      "expected_outcomes": {
+        "run-m": [],
+        "run-n": [
+          "tool-order"
+        ],
+        "run-p": [
+          "significant-argument"
+        ]
+      }
+    },
+    "postgres-tenant-isolation-behavior": {
+      "skill": "postgres-tenant-isolation",
+      "input": "evals/inputs/postgres-tenant-isolation.json",
+      "input_sha256": "090ec142d74e87f7c08a63c76d456ef6dc27ec6dda4b20e4482400aa88498d57",
+      "assertions": [
+        "Flags the reported cross-tenant read and ownership transfer using record IDs.",
+        "Rejects service-role evidence and a deny check with a failed own-row positive control.",
+        "Does not claim JSON report checks prove real RLS or HTTP authentication."
+      ],
+      "expected_outcomes": {
+        "check-m": [
+          "cross-tenant-read"
+        ],
+        "check-n": [
+          "bypass-role"
+        ],
+        "check-p": [
+          "missing-positive-control"
+        ],
+        "check-q": [
+          "ownership-transfer"
+        ]
+      }
+    },
+    "openapi-contract-probes-behavior": {
+      "skill": "openapi-contract-probes",
+      "input": "evals/inputs/openapi-contract-probes.json",
+      "input_sha256": "60aa9ee23d9ff5e4d1539ed4d66f997a9aab4ff36676065d8694aae8531bb720",
+      "assertions": [
+        "Bounds targets, external references, operations and request budget before runtime.",
+        "Rejects boolean count as an integer, the negative count and a missing required field without coercion.",
+        "Separates schema intent uncertainty and unexecuted Schemathesis integration."
+      ],
+      "expected_outcomes": {
+        "response-m": [],
+        "response-n": [
+          "response-type"
+        ],
+        "response-p": [
+          "response-range"
+        ],
+        "response-q": [
+          "response-required-field"
+        ]
+      }
+    },
+    "trace-failure-diagnosis-behavior": {
+      "skill": "trace-failure-diagnosis",
+      "input": "evals/inputs/trace-failure-diagnosis.json",
+      "input_sha256": "25adde635c5325600993e658e2cf8503edbd19cc9ffb27cd3600285970765361",
+      "assertions": [
+        "Reports 180 ms root wall time and 120 ms immediate-child interval coverage, leaving 60 ms uncovered.",
+        "Retains fetch-m/agent-m ERROR evidence and does not invent a population p95.",
+        "Keeps backend cause conditional and preserves tracing gaps."
+      ],
+      "expected_outcomes": {
+        "root_wall_ms": 180,
+        "immediate_child_coverage_ms": 120,
+        "uncovered_ms": 60,
+        "error_span_ids": [
+          "agent-m",
+          "fetch-m"
+        ],
+        "population_p95": "unsupported",
+        "backend_cause": "unresolved"
+      }
+    },
+    "masked-session-to-sop-behavior": {
+      "skill": "masked-session-to-sop",
+      "input": "evals/inputs/masked-session-to-sop.json",
+      "input_sha256": "a02e8a9c9ae4548c93679a419e89db1b10949dc43374fc3747e31048293cd5c1",
+      "assertions": [
+        "Requires consent and sanitization; does not infer masked values.",
+        "Cites observed event IDs and reports unknown success without confirmation.",
+        "Separates observed SOP from proposed automation and does not run replay."
+      ],
+      "expected_outcomes": {
+        "session-m": "save requested; outcome unknown",
+        "session-n": "visible confirmation observed; backend persistence not independently verified",
+        "masked_value": "unknown"
+      }
+    },
+    "grounded-synthetic-datasets-behavior": {
+      "skill": "grounded-synthetic-datasets",
+      "input": "evals/inputs/grounded-synthetic-datasets.json",
+      "input_sha256": "7ae466ed011883d829dba050cf6a3c9bb81b72f22814cd22cf95c8073ebd8773",
+      "assertions": [
+        "Rejects the 7-day answer against the 21-day source, flags missing-clause, and enforces source-level split isolation.",
+        "Includes supported abstention and row-level source revision/evidence.",
+        "Distinguishes hand-authored pilot checks from Curator or paid generation."
+      ],
+      "expected_outcomes": {
+        "qa-m": [],
+        "qa-n": [
+          "unsupported-answer"
+        ],
+        "qa-p": [
+          "invalid-evidence-locator",
+          "duplicate-question"
+        ],
+        "qa-q": [
+          "source-split-leakage"
+        ],
+        "qa-r": []
+      }
+    },
+    "pdf-table-evidence-behavior": {
+      "skill": "pdf-table-evidence",
+      "input": "evals/inputs/pdf-table-evidence.json",
+      "input_sha256": "acfab3418ffe67fab553075a2c1423b77c9ef88915292d3d74a2c2fa246f1116",
+      "assertions": [
+        "Preserves raw text and cell-specific page/bbox evidence.",
+        "Flags table-box-as-cell evidence and wrong normalization; does not fake visual review.",
+        "Discloses no real PDF extraction/render and no OCR capability."
+      ],
+      "expected_outcomes": {
+        "ledger-m": [],
+        "ledger-n": [
+          "cell-coordinate-mismatch"
+        ],
+        "ledger-p": [
+          "normalization-mismatch",
+          "unverified-visual-claim"
+        ]
+      }
+    }
+  }
+}

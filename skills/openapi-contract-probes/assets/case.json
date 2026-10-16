@@ -18,8 +18,7 @@
         "body": {
           "quantity": 3
         }
-      },
-      "issues": []
+      }
     },
     {
       "id": "string",
@@ -29,10 +28,7 @@
         "body": {
           "quantity": "3"
         }
-      },
-      "issues": [
-        "response-type"
-      ]
+      }
     },
     {
       "id": "boolean",
@@ -42,10 +38,7 @@
         "body": {
           "quantity": true
         }
-      },
-      "issues": [
-        "response-type"
-      ]
+      }
     },
     {
       "id": "negative",
@@ -55,10 +48,7 @@
         "body": {
           "quantity": -1
         }
-      },
-      "issues": [
-        "response-range"
-      ]
+      }
     },
     {
       "id": "undocumented-status",
@@ -68,10 +58,7 @@
         "body": {
           "quantity": 3
         }
-      },
-      "issues": [
-        "response-status"
-      ]
+      }
     }
   ]
 }

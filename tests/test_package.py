@@ -111,6 +111,62 @@ class PackageTests(unittest.TestCase):
         path.write_text(json.dumps(data))
         self.assertTrue(any("must be boolean" in e for e in self.errors()))
 
+    def test_behavior_inputs_are_separate_from_teaching_assets(self):
+        cases = json.loads((self.root / "evals/cases.json").read_text())["cases"]
+        for case in cases:
+            if case["kind"] == "behavior":
+                self.assertTrue(case.get("input", "").startswith("evals/inputs/"), case["id"])
+
+    def test_behavior_inputs_contain_no_evaluator_fields(self):
+        paths = list((self.root / "evals/inputs").glob("*.json"))
+        self.assertEqual(len(paths), 7)
+        for path in paths:
+            self.assertFalse(validator.has_evaluator_keys(json.loads(path.read_text())), path.name)
+
+    def test_leaked_answer_key_is_rejected(self):
+        path = self.root / "evals/inputs/trace-failure-diagnosis.json"
+        data = json.loads(path.read_text())
+        data["expected_outcomes"] = {"wall_ms": 180}
+        path.write_text(json.dumps(data))
+        self.assertTrue(any("answer key leaked" in e for e in self.errors()))
+
+    def test_input_oracle_drift_is_detected(self):
+        path = self.root / "evals/inputs/trace-failure-diagnosis.json"
+        data = json.loads(path.read_text())
+        data["spans"][0]["end_ms"] = 200
+        path.write_text(json.dumps(data))
+        self.assertTrue(any("binding mismatch" in e for e in self.errors()))
+
+    def test_installed_assets_have_no_grading_labels(self):
+        def labels(value):
+            if isinstance(value, dict):
+                return any(k in {"issues", "oracles", "answer_oracles"} or labels(v) for k, v in value.items())
+            return isinstance(value, list) and any(labels(v) for v in value)
+        for path in self.root.glob("skills/*/assets/case.json"):
+            self.assertFalse(labels(json.loads(path.read_text())), path)
+
+    def test_grading_label_in_installed_asset_is_rejected(self):
+        path = self.root / "skills/agent-trajectory-regression/assets/case.json"
+        data = json.loads(path.read_text())
+        data["cases"][0]["issues"] = []
+        path.write_text(json.dumps(data))
+        self.assertTrue(any("grading key leaked" in e for e in self.errors()))
+
+    def test_heldout_records_do_not_reuse_teaching_inputs(self):
+        def objects(value):
+            if isinstance(value, dict):
+                yield value
+                for item in value.values():
+                    yield from objects(item)
+            elif isinstance(value, list):
+                for item in value:
+                    yield from objects(item)
+        for path in (self.root / "evals/inputs").glob("*.json"):
+            teaching = json.loads((self.root / "skills" / path.stem / "assets/case.json").read_text())
+            candidates = list(objects(json.loads(path.read_text())))
+            for case in teaching["cases"]:
+                self.assertNotIn(case["input"], candidates, path.name)
+
     def test_validation_cli_nonzero_on_bad_input(self):
         self.change_skill("name: agent-trajectory-regression", "name: Invalid")
         result = subprocess.run([sys.executable, str(ROOT / "scripts/validate_package.py"), str(self.root)], capture_output=True, text=True)
@@ -130,7 +186,10 @@ class PackageTests(unittest.TestCase):
 
 class FixtureTests(unittest.TestCase):
     def fixture(self, skill):
-        return json.loads((ROOT / "skills" / skill / "assets/case.json").read_text())
+        fixture = json.loads((ROOT / "skills" / skill / "assets/case.json").read_text())
+        grading = json.loads((ROOT / "evals/oracles/teaching.json").read_text())["skills"][skill]
+        fixture["_answer_oracles"] = grading["answer_oracles"]
+        return fixture
 
     def test_all_33_synthetic_controls(self):
         paths = sorted(ROOT.glob("skills/*/assets/case.json"))
@@ -180,6 +239,22 @@ class FixtureTests(unittest.TestCase):
         data["rows"][0]["source_id"] = "unlisted"
         self.assertIn("missing-provenance", checker.dataset(data, f))
 
+    def test_dataset_nonexistent_section_rejected(self):
+        f = self.fixture("grounded-synthetic-datasets")
+        f["sources"][0]["locators"] = {"section-1": f["sources"][0]["text"]}
+        data = copy.deepcopy(f["cases"][0]["input"])
+        data["rows"][0]["evidence"] = "nonexistent-section"
+        self.assertIn("invalid-evidence-locator", checker.dataset(data, f))
+
+    def test_dataset_empty_locator_text_rejected(self):
+        f = self.fixture("grounded-synthetic-datasets")
+        f["sources"][0]["locators"]["section-1"] = " "
+        self.assertIn("invalid-evidence-locator", checker.dataset(f["cases"][0]["input"], f))
+
+    def test_dataset_existing_locator_and_supported_answer_pass(self):
+        f = self.fixture("grounded-synthetic-datasets")
+        self.assertEqual(checker.dataset(f["cases"][0]["input"], f), set())
+
     def test_pdf_raw_evidence_must_match(self):
         f = self.fixture("pdf-table-evidence")
         data = copy.deepcopy(f["cases"][0]["input"])
@@ -187,12 +262,13 @@ class FixtureTests(unittest.TestCase):
         self.assertIn("raw-text-mismatch", checker.pdf(data, f))
 
     def test_changed_oracle_causes_fixture_cli_failure(self):
-        f = self.fixture("agent-trajectory-regression")
-        f["cases"][1]["issues"] = []
+        grading = json.loads((ROOT / "evals/oracles/teaching.json").read_text())
+        grading["skills"]["agent-trajectory-regression"]["cases"]["swapped"] = []
         with tempfile.TemporaryDirectory() as temp:
-            path = Path(temp) / "case.json"
-            path.write_text(json.dumps(f))
-            result = subprocess.run([sys.executable, str(ROOT / "scripts/check_fixture.py"), str(path)], capture_output=True, text=True)
+            oracle_path = Path(temp) / "oracle.json"
+            oracle_path.write_text(json.dumps(grading))
+            path = ROOT / "skills/agent-trajectory-regression/assets/case.json"
+            result = subprocess.run([sys.executable, str(ROOT / "scripts/check_fixture.py"), str(path), "--oracle", str(oracle_path)], capture_output=True, text=True)
         self.assertEqual(result.returncode, 1)
         self.assertEqual(json.loads(result.stdout)["status"], "failed")
 

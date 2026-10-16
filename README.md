@@ -16,7 +16,7 @@ Seven evidence-focused workflows for Claude Code and Codex, built around useful 
 | [grounded-synthetic-datasets](skills/grounded-synthetic-datasets/SKILL.md) | Synthetic QA needs provenance, abstentions and leakage controls | Curator |
 | [pdf-table-evidence](skills/pdf-table-evidence/SKILL.md) | Every extracted table cell needs a page and coordinate trail | pdfplumber |
 
-Each directory contains `SKILL.md`, a worked input/output example, pinned source evidence, and a synthetic case with passing and failing controls. Our workflows are independently authored; they are not upstream-endorsed features. [Sources and attribution](docs/SOURCES.md) separate tool capabilities from the workflow added here.
+Each directory contains `SKILL.md`, a worked input/output example, pinned source evidence, and synthetic task data. Teaching verdicts and answer keys stay in evaluator-only files under `evals/oracles/`. Real behavior evaluation uses separate held-out inputs under `evals/inputs/`, not installed examples. Our workflows are independently authored; they are not upstream-endorsed features. [Sources and attribution](docs/SOURCES.md) separate tool capabilities from the workflow added here.
 
 ## Start locally
 

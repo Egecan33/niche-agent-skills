@@ -121,6 +121,11 @@ def dataset(data, fixture):
         if not source or row.get("source_revision") != source["revision"] or not row.get("evidence"):
             issues.add("missing-provenance")
             continue
+        locator = row["evidence"]
+        locators = source.get("locators", {})
+        if not isinstance(locator, str) or not isinstance(locators, dict) or not isinstance(locators.get(locator), str) or not locators[locator].strip():
+            issues.add("invalid-evidence-locator")
+            continue
         if row["source_group"] != source["group"] or row["split"] != source["split"]:
             issues.add("source-split-leakage")
         question = " ".join(row["question"].lower().split())
@@ -131,7 +136,7 @@ def dataset(data, fixture):
         seen_questions.add(question)
         seen_ids.add(row["id"])
         # The tiny fixture has hand-authored answer oracles, not automated entailment.
-        oracles = {" ".join(q.lower().split()): a for q, a in source["oracles"].items()}
+        oracles = {" ".join(q.lower().split()): a for q, a in fixture.get("_answer_oracles", {}).get(source["id"], {}).items()}
         if question not in oracles:
             issues.add("unreviewed-question")
         elif row["answer"] != oracles[question] or row["answerable"] != (oracles[question] is not None):
@@ -170,14 +175,19 @@ CHECKERS = {"trajectory": trajectory, "rls": rls, "openapi": openapi,
             "trace": trace, "session": session, "dataset": dataset, "pdf": pdf}
 
 
-def run_fixture(path):
+def run_fixture(path, oracle_path=None):
     fixture = json.loads(Path(path).read_text(encoding="utf-8"))
     if fixture.get("schema_version") != 1:
         raise ValueError("unknown fixture schema")
+    if oracle_path is None:
+        oracle_path = Path(__file__).resolve().parents[1] / "evals/oracles/teaching.json"
+    oracle_set = json.loads(Path(oracle_path).read_text(encoding="utf-8"))
+    oracle = oracle_set["skills"][Path(path).parent.parent.name]
+    fixture["_answer_oracles"] = oracle.get("answer_oracles", {})
     results = []
     for case in fixture["cases"]:
         actual = sorted(CHECKERS[fixture["kind"]](case["input"], fixture))
-        expected = sorted(case["issues"])
+        expected = sorted(oracle["cases"][case["id"]])
         results.append({"id": case["id"], "passed": actual == expected,
                         "expected_issues": expected, "observed_issues": actual})
     return results
@@ -186,12 +196,13 @@ def run_fixture(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("fixture", nargs="?", type=Path)
+    parser.add_argument("--oracle", type=Path, help="Evaluator-only teaching oracle; never provide this file to the model")
     args = parser.parse_args()
     paths = [args.fixture] if args.fixture else sorted(Path(__file__).resolve().parents[1].glob("skills/*/assets/case.json"))
     results, errors = {}, []
     for path in paths:
         try:
-            results[path.parent.parent.name] = run_fixture(path)
+            results[path.parent.parent.name] = run_fixture(path, args.oracle)
         except (ValueError, TypeError, KeyError, OSError) as exc:
             errors.append({"fixture": path.name, "error": type(exc).__name__})
     passed = bool(results) and not errors and all(c["passed"] for cases in results.values() for c in cases)

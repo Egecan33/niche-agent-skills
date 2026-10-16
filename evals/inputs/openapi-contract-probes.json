@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "case_set": "held-out-v1",
+  "skill": "openapi-contract-probes",
+  "task": "Audit the captured responses against this small declared contract and propose bounded follow-up probes. Do not send HTTP requests.",
+  "contract": {
+    "operation": "GET /bins/{bin_id}",
+    "response_status": 200,
+    "content_type": "application/json",
+    "body": {
+      "required": [
+        "count"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "test_scope": {
+    "target": "disposable loopback service only",
+    "operation_allowlist": [
+      "GET /bins/{bin_id}"
+    ],
+    "request_budget": 12,
+    "external_references": []
+  },
+  "records": [
+    {
+      "id": "response-m",
+      "status": 200,
+      "content_type": "application/json",
+      "body": {
+        "count": 8
+      }
+    },
+    {
+      "id": "response-n",
+      "status": 200,
+      "content_type": "application/json",
+      "body": {
+        "count": true
+      }
+    },
+    {
+      "id": "response-p",
+      "status": 200,
+      "content_type": "application/json",
+      "body": {
+        "count": -2
+      }
+    },
+    {
+      "id": "response-q",
+      "status": 200,
+      "content_type": "application/json",
+      "body": {}
+    }
+  ]
+}

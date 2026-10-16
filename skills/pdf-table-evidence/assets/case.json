@@ -51,8 +51,7 @@
             "visual_review": "not_run"
           }
         ]
-      },
-      "issues": []
+      }
     },
     {
       "id": "page-box-as-cell",
@@ -73,10 +72,7 @@
             "visual_review": "not_run"
           }
         ]
-      },
-      "issues": [
-        "cell-coordinate-mismatch"
-      ]
+      }
     },
     {
       "id": "out-of-page",
@@ -97,11 +93,7 @@
             "visual_review": "not_run"
           }
         ]
-      },
-      "issues": [
-        "bbox-out-of-page",
-        "cell-coordinate-mismatch"
-      ]
+      }
     },
     {
       "id": "wrong-normalization",
@@ -122,10 +114,7 @@
             "visual_review": "not_run"
           }
         ]
-      },
-      "issues": [
-        "normalization-mismatch"
-      ]
+      }
     },
     {
       "id": "unverified-visual-claim",
@@ -146,10 +135,7 @@
             "visual_review": "passed"
           }
         ]
-      },
-      "issues": [
-        "unverified-visual-claim"
-      ]
+      }
     }
   ]
 }

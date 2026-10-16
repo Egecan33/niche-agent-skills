@@ -9,9 +9,8 @@
       "group": "returns-policy",
       "split": "eval",
       "text": "Unopened items can be returned within 14 days.",
-      "oracles": {
-        "How many days?": "14 days",
-        "What is the return shipping fee?": null
+      "locators": {
+        "section-1": "Unopened items can be returned within 14 days."
       }
     }
   ],
@@ -33,8 +32,7 @@
             "generation": "hand-authored synthetic pilot"
           }
         ]
-      },
-      "issues": []
+      }
     },
     {
       "id": "unsupported-answer",
@@ -53,10 +51,7 @@
             "generation": "hand-authored synthetic pilot"
           }
         ]
-      },
-      "issues": [
-        "unsupported-answer"
-      ]
+      }
     },
     {
       "id": "leaked-split",
@@ -75,10 +70,7 @@
             "generation": "hand-authored synthetic pilot"
           }
         ]
-      },
-      "issues": [
-        "source-split-leakage"
-      ]
+      }
     },
     {
       "id": "duplicate-question",
@@ -109,10 +101,7 @@
             "generation": "hand-authored synthetic pilot"
           }
         ]
-      },
-      "issues": [
-        "duplicate-question"
-      ]
+      }
     },
     {
       "id": "abstention",
@@ -131,8 +120,7 @@
             "generation": "hand-authored synthetic pilot"
           }
         ]
-      },
-      "issues": []
+      }
     }
   ]
 }

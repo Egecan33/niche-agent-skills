@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "case_set": "held-out-v1",
+  "skill": "postgres-tenant-isolation",
+  "task": "Audit this reported synthetic RLS test evidence. State what the report can and cannot prove; do not execute SQL.",
+  "contract": {
+    "members": "read and write only their own tenant notes; no transfer to another tenant",
+    "nonmembers": "no protected rows",
+    "database_role": "authenticated"
+  },
+  "rows": [
+    {
+      "id": "memo-m",
+      "tenant": "north"
+    },
+    {
+      "id": "memo-n",
+      "tenant": "south"
+    }
+  ],
+  "records": [
+    {
+      "id": "check-m",
+      "role": "authenticated",
+      "member_tenant": "north",
+      "operation": "select all",
+      "visible_rows": [
+        "memo-m",
+        "memo-n"
+      ],
+      "own_row_control_returned": true
+    },
+    {
+      "id": "check-n",
+      "role": "service_role",
+      "member_tenant": "north",
+      "operation": "select all",
+      "visible_rows": [
+        "memo-m"
+      ],
+      "own_row_control_returned": true
+    },
+    {
+      "id": "check-p",
+      "role": "authenticated",
+      "member_tenant": "north",
+      "operation": "select south",
+      "visible_rows": [],
+      "own_row_control_returned": false
+    },
+    {
+      "id": "check-q",
+      "role": "authenticated",
+      "member_tenant": "north",
+      "operation": "change memo-m tenant to south",
+      "post_state": {
+        "id": "memo-m",
+        "tenant": "south"
+      },
+      "own_row_control_returned": true
+    }
+  ]
+}

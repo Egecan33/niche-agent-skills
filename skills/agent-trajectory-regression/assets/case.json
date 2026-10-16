@@ -38,8 +38,7 @@
             }
           }
         ]
-      },
-      "issues": []
+      }
     },
     {
       "id": "swapped",
@@ -59,10 +58,7 @@
             }
           }
         ]
-      },
-      "issues": [
-        "tool-order"
-      ]
+      }
     },
     {
       "id": "changed-amount",
@@ -82,10 +78,7 @@
             }
           }
         ]
-      },
-      "issues": [
-        "significant-argument"
-      ]
+      }
     },
     {
       "id": "duplicate-write",
@@ -112,10 +105,7 @@
             }
           }
         ]
-      },
-      "issues": [
-        "call-count"
-      ]
+      }
     }
   ]
 }

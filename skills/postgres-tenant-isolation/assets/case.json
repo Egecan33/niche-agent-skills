@@ -15,8 +15,7 @@
         "actual_rows": [
           "note-a"
         ]
-      },
-      "issues": []
+      }
     },
     {
       "id": "cross-tenant-leak",
@@ -31,10 +30,7 @@
           "note-a",
           "note-b"
         ]
-      },
-      "issues": [
-        "row-set-mismatch"
-      ]
+      }
     },
     {
       "id": "vacuous-deny",
@@ -44,10 +40,7 @@
         "operation": "select",
         "expected_rows": [],
         "actual_rows": []
-      },
-      "issues": [
-        "missing-positive-control"
-      ]
+      }
     },
     {
       "id": "bypass-connection",
@@ -61,10 +54,7 @@
         "actual_rows": [
           "note-a"
         ]
-      },
-      "issues": [
-        "bypass-role"
-      ]
+      }
     },
     {
       "id": "ownership-transfer",
@@ -78,10 +68,7 @@
         "actual_rows": [
           "note-a:tenant-b"
         ]
-      },
-      "issues": [
-        "row-set-mismatch"
-      ]
+      }
     }
   ]
 }

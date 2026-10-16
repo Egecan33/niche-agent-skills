@@ -111,11 +111,21 @@ def check_links(path: Path, root: Path) -> list[str]:
     return errors
 
 
+def has_evaluator_keys(value) -> bool:
+    """Guard explicit answer-key fields, not semantic contamination in prose."""
+    if isinstance(value, dict):
+        return any(key in {"issues", "oracles", "answer_oracles", "_answer_oracles", "assertions", "should_trigger"}
+                   or key.startswith("expected") or has_evaluator_keys(item) for key, item in value.items())
+    if isinstance(value, list):
+        return any(has_evaluator_keys(item) for item in value)
+    return False
+
+
 def check_evals(root: Path) -> list[str]:
     errors = []
     try:
         data = json.loads((root / "evals/cases.json").read_text(encoding="utf-8"))
-        if data.get("schema_version") != 1 or not isinstance(data.get("cases"), list):
+        if data.get("schema_version") != 2 or not isinstance(data.get("cases"), list):
             return ["invalid evaluation schema/version"]
         ids, routing, behavioral = set(), {}, set()
         for case in data["cases"]:
@@ -136,22 +146,45 @@ def check_evals(root: Path) -> list[str]:
                     key = (skill, expected)
                     routing[key] = routing.get(key, 0) + 1
             else:
-                assertions = case.get("assertions")
+                behavioral.add(skill)
+                input_name, oracle_name = case.get("input", ""), case.get("oracle", "")
+                input_path, oracle_path = (root / input_name).resolve(), (root / oracle_name).resolve()
+                if (not input_name.startswith("evals/inputs/") or not oracle_name.startswith("evals/oracles/")
+                        or not input_path.is_relative_to(root.resolve()) or not oracle_path.is_relative_to(root.resolve())
+                        or not input_path.is_file() or not oracle_path.is_file()):
+                    errors.append(f"{cid}: missing or escaping input/oracle path")
+                    continue
+                payload = json.loads(input_path.read_text(encoding="utf-8"))
+                oracle = json.loads(oracle_path.read_text(encoding="utf-8"))["cases"][cid]
+                if payload.get("skill") != skill or payload.get("case_set") != "held-out-v1":
+                    errors.append(f"{cid}: wrong held-out input identity")
+                if has_evaluator_keys(payload):
+                    errors.append(f"{cid}: evaluator answer key leaked into model input")
+                if oracle.get("input") != input_name or oracle.get("input_sha256") != hashlib.sha256(input_path.read_bytes()).hexdigest():
+                    errors.append(f"{cid}: input/oracle binding mismatch")
+                assertions = oracle.get("assertions")
                 if not isinstance(assertions, list) or not assertions or not all(
                     isinstance(item, str) and item.strip() for item in assertions
                 ):
                     errors.append(f"{cid}: missing observable assertions")
-                behavioral.add(skill)
-                fixture = case.get("fixture", "")
-                target = (root / fixture).resolve()
-                if not fixture or not target.is_relative_to(root.resolve()) or not target.is_file():
-                    errors.append(f"{cid}: missing or escaping fixture path")
+                if not oracle.get("expected_outcomes"):
+                    errors.append(f"{cid}: missing evaluator-only outcomes")
         for skill in sorted(SKILLS):
             if not all(routing.get((skill, expected), 0) >= 2 for expected in (True, False)):
                 errors.append(f"{skill}: need two positive and two negative routing cases")
             if skill not in behavioral:
                 errors.append(f"{skill}: need a behavior case")
-    except (OSError, ValueError, TypeError, AttributeError) as exc:
+        for path in root.glob("skills/*/assets/case.json"):
+            teaching = json.loads(path.read_text(encoding="utf-8"))
+            # expected_rows is an explicit access contract in a worked example,
+            # not a case verdict; all grading keys still belong evaluator-side.
+            def grading_keys(value):
+                if isinstance(value, dict):
+                    return any(k in {"issues", "oracles", "answer_oracles", "_answer_oracles"} or grading_keys(v) for k, v in value.items())
+                return isinstance(value, list) and any(grading_keys(v) for v in value)
+            if grading_keys(teaching):
+                errors.append(f"{path.parent.parent.name}: grading key leaked into installed asset")
+    except (OSError, ValueError, TypeError, AttributeError, KeyError) as exc:
         errors.append(f"cannot validate evals: {type(exc).__name__}")
     return errors
 

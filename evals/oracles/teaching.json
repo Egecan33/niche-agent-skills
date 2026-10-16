@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "visibility": "evaluator-only",
+  "skills": {
+    "agent-trajectory-regression": {
+      "cases": {
+        "same": [],
+        "swapped": [
+          "tool-order"
+        ],
+        "changed-amount": [
+          "significant-argument"
+        ],
+        "duplicate-write": [
+          "call-count"
+        ]
+      },
+      "answer_oracles": {}
+    },
+    "grounded-synthetic-datasets": {
+      "cases": {
+        "grounded": [],
+        "unsupported-answer": [
+          "unsupported-answer"
+        ],
+        "leaked-split": [
+          "source-split-leakage"
+        ],
+        "duplicate-question": [
+          "duplicate-question"
+        ],
+        "abstention": []
+      },
+      "answer_oracles": {
+        "policy-01": {
+          "How many days?": "14 days",
+          "What is the return shipping fee?": null
+        }
+      }
+    },
+    "masked-session-to-sop": {
+      "cases": {
+        "confirmed": [],
+        "save-without-confirmation": [
+          "unobserved-success"
+        ],
+        "no-consent": [
+          "consent-required"
+        ],
+        "invented-masked-value": [
+          "unmasking-inference"
+        ],
+        "invalid-evidence-id": [
+          "unknown-event-reference"
+        ]
+      },
+      "answer_oracles": {}
+    },
+    "openapi-contract-probes": {
+      "cases": {
+        "integer": [],
+        "string": [
+          "response-type"
+        ],
+        "boolean": [
+          "response-type"
+        ],
+        "negative": [
+          "response-range"
+        ],
+        "undocumented-status": [
+          "response-status"
+        ]
+      },
+      "answer_oracles": {}
+    },
+    "pdf-table-evidence": {
+      "cases": {
+        "linked-cell": [],
+        "page-box-as-cell": [
+          "cell-coordinate-mismatch"
+        ],
+        "out-of-page": [
+          "bbox-out-of-page",
+          "cell-coordinate-mismatch"
+        ],
+        "wrong-normalization": [
+          "normalization-mismatch"
+        ],
+        "unverified-visual-claim": [
+          "unverified-visual-claim"
+        ]
+      },
+      "answer_oracles": {}
+    },
+    "postgres-tenant-isolation": {
+      "cases": {
+        "own-visible": [],
+        "cross-tenant-leak": [
+          "row-set-mismatch"
+        ],
+        "vacuous-deny": [
+          "missing-positive-control"
+        ],
+        "bypass-connection": [
+          "bypass-role"
+        ],
+        "ownership-transfer": [
+          "row-set-mismatch"
+        ]
+      },
+      "answer_oracles": {}
+    },
+    "trace-failure-diagnosis": {
+      "cases": {
+        "overlap-aware": [],
+        "summed-children": [
+          "coverage-mismatch",
+          "uncovered-mismatch"
+        ],
+        "missing-error": [
+          "error-evidence-mismatch"
+        ],
+        "invented-p95": [
+          "unsupported-population-statistic"
+        ]
+      },
+      "answer_oracles": {}
+    }
+  }
+}

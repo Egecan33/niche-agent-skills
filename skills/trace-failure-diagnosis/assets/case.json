@@ -41,8 +41,7 @@
             "root"
           ]
         }
-      },
-      "issues": []
+      }
     },
     {
       "id": "summed-children",
@@ -56,11 +55,7 @@
             "root"
           ]
         }
-      },
-      "issues": [
-        "coverage-mismatch",
-        "uncovered-mismatch"
-      ]
+      }
     },
     {
       "id": "missing-error",
@@ -73,10 +68,7 @@
             "root"
           ]
         }
-      },
-      "issues": [
-        "error-evidence-mismatch"
-      ]
+      }
     },
     {
       "id": "invented-p95",
@@ -91,10 +83,7 @@
           ],
           "p95_ms": 100
         }
-      },
-      "issues": [
-        "unsupported-population-statistic"
-      ]
+      }
     }
   ]
 }

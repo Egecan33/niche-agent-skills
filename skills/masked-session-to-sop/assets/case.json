@@ -57,8 +57,7 @@
         ],
         "outcome": "saved",
         "recovered_masked_value": null
-      },
-      "issues": []
+      }
     },
     {
       "id": "save-without-confirmation",
@@ -101,10 +100,7 @@
         ],
         "outcome": "saved",
         "recovered_masked_value": null
-      },
-      "issues": [
-        "unobserved-success"
-      ]
+      }
     },
     {
       "id": "no-consent",
@@ -160,10 +156,7 @@
         ],
         "outcome": "saved",
         "recovered_masked_value": null
-      },
-      "issues": [
-        "consent-required"
-      ]
+      }
     },
     {
       "id": "invented-masked-value",
@@ -219,10 +212,7 @@
         ],
         "outcome": "saved",
         "recovered_masked_value": "invented draft"
-      },
-      "issues": [
-        "unmasking-inference"
-      ]
+      }
     },
     {
       "id": "invalid-evidence-id",
@@ -265,10 +255,7 @@
         ],
         "outcome": "saved",
         "recovered_masked_value": null
-      },
-      "issues": [
-        "unknown-event-reference"
-      ]
+      }
     }
   ]
 }

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "case_set": "held-out-v1",
+  "skill": "grounded-synthetic-datasets",
+  "task": "Audit candidate QA rows against the provided source inventory and split assignment. Reject unsupported claims and invalid provenance; generation is not authorized.",
+  "sources": [
+    {
+      "id": "policy-holdout-07",
+      "revision": "r3",
+      "group": "sealed-returns",
+      "split": "eval",
+      "locators": {
+        "returns-window": "Sealed products may be returned within 21 days."
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "qa-m",
+      "source_id": "policy-holdout-07",
+      "source_revision": "r3",
+      "source_group": "sealed-returns",
+      "evidence": "returns-window",
+      "question": "What is the sealed-product return window?",
+      "answer": "21 days",
+      "answerable": true,
+      "split": "eval"
+    },
+    {
+      "id": "qa-n",
+      "source_id": "policy-holdout-07",
+      "source_revision": "r3",
+      "source_group": "sealed-returns",
+      "evidence": "returns-window",
+      "question": "How long may sealed products be returned?",
+      "answer": "7 days",
+      "answerable": true,
+      "split": "eval"
+    },
+    {
+      "id": "qa-p",
+      "source_id": "policy-holdout-07",
+      "source_revision": "r3",
+      "source_group": "sealed-returns",
+      "evidence": "missing-clause",
+      "question": "What is the sealed-product return window?",
+      "answer": "21 days",
+      "answerable": true,
+      "split": "eval"
+    },
+    {
+      "id": "qa-q",
+      "source_id": "policy-holdout-07",
+      "source_revision": "r3",
+      "source_group": "sealed-returns",
+      "evidence": "returns-window",
+      "question": "State the sealed-product return deadline.",
+      "answer": "21 days",
+      "answerable": true,
+      "split": "train"
+    },
+    {
+      "id": "qa-r",
+      "source_id": "policy-holdout-07",
+      "source_revision": "r3",
+      "source_group": "sealed-returns",
+      "evidence": "returns-window",
+      "question": "What is the return shipping charge?",
+      "answer": null,
+      "answerable": false,
+      "split": "eval"
+    }
+  ]
+}

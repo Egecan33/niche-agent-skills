@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "case_set": "held-out-v1",
+  "skill": "pdf-table-evidence",
+  "task": "Audit the reported cell ledger against this mock table-object export. Do not claim PDF extraction or visual review.",
+  "page": {
+    "number": 2,
+    "width": 595,
+    "height": 842,
+    "rotation": 0
+  },
+  "render_available": false,
+  "locale_rule": "de-DE decimal and grouping separators",
+  "table": {
+    "bbox": [
+      30,
+      200,
+      330,
+      280
+    ],
+    "cells": [
+      {
+        "id": "balance-m",
+        "page": 2,
+        "bbox": [
+          180,
+          220,
+          330,
+          240
+        ],
+        "raw_text": "2.750,50"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "ledger-m",
+      "cell_id": "balance-m",
+      "page": 2,
+      "bbox": [
+        180,
+        220,
+        330,
+        240
+      ],
+      "raw_text": "2.750,50",
+      "normalized_value": 2750.5,
+      "visual_review": "not_run"
+    },
+    {
+      "id": "ledger-n",
+      "cell_id": "balance-m",
+      "page": 2,
+      "bbox": [
+        30,
+        200,
+        330,
+        280
+      ],
+      "raw_text": "2.750,50",
+      "normalized_value": 2750.5,
+      "visual_review": "not_run"
+    },
+    {
+      "id": "ledger-p",
+      "cell_id": "balance-m",
+      "page": 2,
+      "bbox": [
+        180,
+        220,
+        330,
+        240
+      ],
+      "raw_text": "2.750,50",
+      "normalized_value": 2.7505,
+      "visual_review": "passed"
+    }
+  ]
+}

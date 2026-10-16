@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "case_set": "held-out-v1",
+  "skill": "trace-failure-diagnosis",
+  "task": "Compute overlap-aware timing and identify evidenced error propagation. Limit claims to this one synthetic trace.",
+  "units": "milliseconds",
+  "sampling": "one trace; no population sample",
+  "spans": [
+    {
+      "id": "agent-m",
+      "parent": null,
+      "kind": "AGENT",
+      "start_ms": 0,
+      "end_ms": 180,
+      "status": "ERROR"
+    },
+    {
+      "id": "fetch-m",
+      "parent": "agent-m",
+      "kind": "RETRIEVER",
+      "start_ms": 20,
+      "end_ms": 100,
+      "status": "ERROR"
+    },
+    {
+      "id": "llm-m",
+      "parent": "agent-m",
+      "kind": "LLM",
+      "start_ms": 80,
+      "end_ms": 140,
+      "status": "UNSET"
+    }
+  ]
+}

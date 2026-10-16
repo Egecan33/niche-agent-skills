@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "cases": [
     {
       "id": "agent-trajectory-regression-routing-1",
@@ -37,13 +37,9 @@
       "id": "agent-trajectory-regression-behavior",
       "kind": "behavior",
       "skill": "agent-trajectory-regression",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/agent-trajectory-regression/assets/case.json",
-      "assertions": [
-        "Selects an order-sensitive policy and exact significant arguments.",
-        "Flags swapped calls, changed amount and duplicate write intent without replaying tools.",
-        "Distinguishes simplified offline fixture comparison from an AgentEvals run."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/agent-trajectory-regression.json",
+      "oracle": "evals/oracles/behavior.json"
     },
     {
       "id": "postgres-tenant-isolation-routing-1",
@@ -81,13 +77,9 @@
       "id": "postgres-tenant-isolation-behavior",
       "kind": "behavior",
       "skill": "postgres-tenant-isolation",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/postgres-tenant-isolation/assets/case.json",
-      "assertions": [
-        "Requires a restricted effective role and an own-row positive control.",
-        "Covers cross-tenant reads and forged insert/update/delete effects.",
-        "Does not claim JSON report checks prove real RLS or HTTP auth."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/postgres-tenant-isolation.json",
+      "oracle": "evals/oracles/behavior.json"
     },
     {
       "id": "openapi-contract-probes-routing-1",
@@ -125,13 +117,9 @@
       "id": "openapi-contract-probes-behavior",
       "kind": "behavior",
       "skill": "openapi-contract-probes",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/openapi-contract-probes/assets/case.json",
-      "assertions": [
-        "Bounds targets, external references, operations and request budget before runtime.",
-        "Flags a string quantity against the declared integer contract without coercion.",
-        "Separates schema intent uncertainty and unexecuted Schemathesis integration."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/openapi-contract-probes.json",
+      "oracle": "evals/oracles/behavior.json"
     },
     {
       "id": "trace-failure-diagnosis-routing-1",
@@ -169,13 +157,9 @@
       "id": "trace-failure-diagnosis-behavior",
       "kind": "behavior",
       "skill": "trace-failure-diagnosis",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/trace-failure-diagnosis/assets/case.json",
-      "assertions": [
-        "Reports 100 ms root wall time and 80 ms child interval coverage.",
-        "Retains retriever/root ERROR evidence and does not invent a population p95.",
-        "Keeps backend cause conditional and preserves tracing gaps."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/trace-failure-diagnosis.json",
+      "oracle": "evals/oracles/behavior.json"
     },
     {
       "id": "masked-session-to-sop-routing-1",
@@ -213,13 +197,9 @@
       "id": "masked-session-to-sop-behavior",
       "kind": "behavior",
       "skill": "masked-session-to-sop",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/masked-session-to-sop/assets/case.json",
-      "assertions": [
-        "Requires consent and sanitization; does not infer masked values.",
-        "Cites observed event IDs and reports unknown success without confirmation.",
-        "Separates observed SOP from proposed automation and does not run replay."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/masked-session-to-sop.json",
+      "oracle": "evals/oracles/behavior.json"
     },
     {
       "id": "grounded-synthetic-datasets-routing-1",
@@ -257,13 +237,9 @@
       "id": "grounded-synthetic-datasets-behavior",
       "kind": "behavior",
       "skill": "grounded-synthetic-datasets",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/grounded-synthetic-datasets/assets/case.json",
-      "assertions": [
-        "Rejects a 30-day answer and enforces source-level split isolation.",
-        "Includes supported abstention and row-level source revision/evidence.",
-        "Distinguishes hand-authored pilot checks from Curator or paid generation."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/grounded-synthetic-datasets.json",
+      "oracle": "evals/oracles/behavior.json"
     },
     {
       "id": "pdf-table-evidence-routing-1",
@@ -301,13 +277,9 @@
       "id": "pdf-table-evidence-behavior",
       "kind": "behavior",
       "skill": "pdf-table-evidence",
-      "prompt": "Use this skill to audit assets/case.json. Return a report with issue evidence and execution limitations; do not run any external service or tools from the source repository.",
-      "fixture": "skills/pdf-table-evidence/assets/case.json",
-      "assertions": [
-        "Preserves raw text and cell-specific page/bbox evidence.",
-        "Flags out-of-page coordinates and wrong normalization; does not fake visual review.",
-        "Discloses no real PDF extraction/render and no OCR capability."
-      ]
+      "prompt": "Audit the attached input.json using this skill. Return evidence-linked findings and execution limitations. Do not run external services or source-repository tools.",
+      "input": "evals/inputs/pdf-table-evidence.json",
+      "oracle": "evals/oracles/behavior.json"
     }
   ]
 }

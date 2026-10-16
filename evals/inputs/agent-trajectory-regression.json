@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "case_set": "held-out-v1",
+  "skill": "agent-trajectory-regression",
+  "task": "Audit each recorded call path against the supplied contract. Do not replay tools.",
+  "contract": {
+    "order": [
+      "inventory_lookup",
+      "reserve_units"
+    ],
+    "significant_arguments": [
+      "item_id",
+      "units"
+    ],
+    "extra_calls_permitted": false,
+    "calls": [
+      {
+        "name": "inventory_lookup",
+        "arguments": {
+          "item_id": 42
+        }
+      },
+      {
+        "name": "reserve_units",
+        "arguments": {
+          "item_id": 42,
+          "units": 4
+        }
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "run-m",
+      "calls": [
+        {
+          "name": "inventory_lookup",
+          "arguments": {
+            "item_id": 42
+          }
+        },
+        {
+          "name": "reserve_units",
+          "arguments": {
+            "item_id": 42,
+            "units": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "run-n",
+      "calls": [
+        {
+          "name": "reserve_units",
+          "arguments": {
+            "item_id": 42,
+            "units": 4
+          }
+        },
+        {
+          "name": "inventory_lookup",
+          "arguments": {
+            "item_id": 42
+          }
+        }
+      ]
+    },
+    {
+      "id": "run-p",
+      "calls": [
+        {
+          "name": "inventory_lookup",
+          "arguments": {
+            "item_id": 42
+          }
+        },
+        {
+          "name": "reserve_units",
+          "arguments": {
+            "item_id": 42,
+            "units": 40
+          }
+        }
+      ]
+    }
+  ]
+}
